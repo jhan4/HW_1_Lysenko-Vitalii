@@ -14,10 +14,10 @@ namespace Calculator
         public int Substraction(int x, int y)
         { return x - y; }
 
-        public int Multiplication(int x, int y)
+        public double Multiplication(double x, double y)
         { return x * y; }
 
-        public int Divide(int x, int y)
+        public double Divide(double x, double y)
         { return x / y; }
 
        

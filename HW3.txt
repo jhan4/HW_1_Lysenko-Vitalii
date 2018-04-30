@@ -1,0 +1,41 @@
+1)Finding of all div 
+&x("//div")
+$$("div")
+
+2) Finding of all div with h2 class
+$x("//div[@class='h2']")
+$$('div.h2')
+
+3)Finding of all spans with news titles
+$x('//li[contains(@class, "news item links-black")]/a/span')
+  $$('li[class^="news item links-black"]>a>span')
+
+4)Finding of the last span with news title
+  $x('//li[(@class="news item links-black last")]/a/span')
+  $$('li[class="news item links-black last"]>a>span')
+
+5)Getting of all titles from 3#
+$x('//li[contains(@class, "news item links-black")]/a/span/text()')
+
+6)Finding of element with text "Kyiv"
+$x('//div[@id="cities-teaser"]/div[@class="cities"]/ul/li/a[text()="Киев"]')
+$x('//div[@class="cities"]/ul/li/a[text()="Киев"]')
+
+7)Finding of element that describes city next after "Киев"
+$x('//div[@class="cities"]/ul/li/a[text()="Киев"]/following::a[1]')
+
+8)Finding of all top menu link
+$x('//div[@id="menu"]/ul/li')
+$$('div#menu>ul>li')
+
+9)Finding of element for 3 current weekdays on the current city weater page
+$x('//div[contains(@id, "wdaily")]')
+$$('div[id^="tab_wdaily"]')
+
+10)Finding of element fot currently selected weekday
+$x('//div[@class="fcontent"]/div[@class="wsection wdata"]')
+$$('div[class="fcontent"]>div[class="wsection wdata"]')
+
+11)Finding of a temperature when it's "Малооблачно"
+$x('//tbody[@id="tbwdaily1"]/tr/td[contains(text(),"Ясно")]/following-sibling::td[@class="temp"]/span[@class="value m_temp c"]')
+

@@ -12,6 +12,7 @@ namespace Calculator
         {
             return arr.Max();
         }
+
         public int ArrayMinValue(int[] arr)
         {
             int result = arr[0];
@@ -20,21 +21,30 @@ namespace Calculator
                 { result = arr[i]; }
             return result;
         }
-        public bool Compare(int x, int y)
+        public double Sin(double angle_value)
         {
-            bool result = true;
-            if (x > y)
-            { result = true; }
-
-            if (x < y)
-            { result = true; }
-
-            if (x == y)
-            { result = true; }
-            return result;
+            return Math.Round(Math.Sin(Divide(Multiplication(angle_value, Math.PI), 180)),5);
         }
+
+        public double Cos(double angle_value)
+        {
+            return Math.Round(Math.Cos(Divide(Multiplication(angle_value, Math.PI), 180)),5);
+        }
+
+        public double Tan(double angle_value)
+        {
+            return Math.Round(Math.Tan(Divide(Multiplication(angle_value, Math.PI), 180)), 5);
+        }
+
+        public double Atan(double angle_value)
+        {
+            return Math.Round(Divide(Multiplication(Math.Atan(angle_value), 180), Math.PI), 5);
+        }
+
         public double Sqrt(double num)
-        {return Math.Sqrt(num);}
+        {
+            return Math.Sqrt(num);
+        }
 
         public double Pow(double num, double n)
         {
@@ -48,7 +58,6 @@ namespace Calculator
 
         public int Mod(int x, int y) 
         {
-            
             return x % y;
         }
 

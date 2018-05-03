@@ -13,9 +13,7 @@ namespace Tests
         public void ArrayMinValueTesting()
         {
             int[] arr = { 4, 5, 2, 1, 7 };
-            int expected = 1;
-            int actual = a.ArrayMinValue(arr);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(1, a.ArrayMinValue(arr));
         }
 
         [Test, Description("Verify Array is not empty")]
@@ -61,117 +59,74 @@ namespace Tests
         public void ArrayMaxValueTesting()
         {
             int[] arr = { 2, 4, 7, 1 };
-            int expected = 7;
-            int actual = a.ArrayMaxValue(arr);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(7, a.ArrayMaxValue(arr));
         }
 
-        [Test]
-        public void SmallerValueTesting()
+        [Test, Description("Tan Method Testing")]
+        public void TanTesting()
         {
-            int arg1 = 2;
-            int arg2 = 3;
-            bool actual = a.Compare(arg1, arg2);
-            Assert.True(actual);
+            double tan_of_angle = a.Tan(30);
+            Assert.That(tan_of_angle, Is.EqualTo(0.57735), "Tan of 180 degree is equal to 0");
         }
 
-        [Test]
-        public void EqualityTesting()
+        [Test, Description("ATan Method Testing")]
+        public void ATanTesting()
         {
-            int arg1 = 1;
-            int arg2 = 1;
-            bool actual = a.Compare(arg1, arg2);
-            Assert.True(actual);
+            double tan_of_angle = a.Atan(a.Sqrt(3));
+            Assert.That(tan_of_angle, Is.EqualTo(60), "Tan of square root of 3 is equal to 60");
         }
 
 
-        [Test]
-        public void BiggerValueTesting()
-        {
-            int arg1 = 3;
-            int arg2 = 2;
-            bool actual = a.Compare(arg1, arg2);
-            Assert.True(actual);
-        }
         [Test, Description("Testing of Sqrt Method")]
         public void SqrtTesting()
         {
-            double d = 25;
-            double expected = 5;
-            double actual = a.Sqrt(d);
-            Assert.AreEqual(expected, actual, "Square root from 25 to be equal to 5");
+            Assert.That(a.Sqrt(25), Is.EqualTo(5), "Square root of 25 to be equal to 5");
         }
 
         [Test, Description("Assert.Positive Testing")]
         public void SqrtTesting2()
         {
-            double d = 25;
-            double actual = a.Sqrt(d);
-            Assert.Positive(actual, "Actual Result should be positive");
+            Assert.That(a.Sqrt(25), Is.Positive, "Square root of should be positive");
         }
 
         [Test, Description("Assert.Greater Testing")]
         public void SqrtTesting3()
         {
-            double d = 25;
-            double actual = a.Sqrt(d);
-            Assert.Greater(actual, 0, "Actual Result should be Greater than 0");
+            Assert.Greater(a.Sqrt(25), 0, "Actual Result should be Greater than 0");
         }
 
         [Test, Description("Pow Method Testing")]
         public void PowTesting()
         {
-            double x = 5;
-            double y = 2;
-            double expected = 25;
-            double actual = a.Pow(x, y);
-            Assert.AreEqual(expected, actual, "5^2 should be equal to 25");
+            Assert.AreEqual(25, a.Pow(5, 2), "5^2 should be equal to 25");
         }
 
         [Test, Description("Assert.Positive Testing")]
         public void PowTesting2()
         {
-            double actual = a.Pow(2, -8);
-            Assert.That(actual, Is.Positive, "Actual Result should be positive");
+            Assert.That(a.Pow(2, -8), Is.Positive, "2^(-8) should be positive");
         }
         [Test, Ignore("Test should be ignored")]
         public void IgnoringOfPowTesting()
         {
-            double x = -2;
-            double y = 6;
-            double expected = -64;
-            double actual = a.Pow(x, y);
-            Assert.AreEqual(expected, actual);
+            Assert.That(a.Pow(-2, 6), Is.EqualTo(-64));
         }
 
         [Test]
         public void ModTesting()
         {
-            int x = 25;
-            int y = 7;
-            int expected = 4;
-            ScientificCalculator a = new ScientificCalculator();
-            int actual = a.Mod(x, y);
-            Assert.AreEqual(expected, actual);
+            Assert.That(a.Mod(25, 7), Is.EqualTo(4));
         }
 
         [Test, Description("Assert.Less Testing")]
         public void ModTesting2()
         {
-            int x = 25;
-            int y = 7;
-            ScientificCalculator a = new ScientificCalculator();
-            int actual = a.Mod(x, y);
-            Assert.Less(actual, 5, "Actual result should be less than 5");
+            Assert.Less(a.Mod(25, 7), 5, "25 % 7 should be less than 5");
         }
         [Test]
         public void PercentTesting()
         {
-            double x = 50;
-            double y = 5;
-            double expected = 2.5;
-            double actual = a.Percent(x, y);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(2.5, a.Percent(50, 5), "5 pecent of 50 is 2.5");
         }
 
         [Test(ExpectedResult = 2.5)]
@@ -193,21 +148,21 @@ namespace Tests
         [TestCase(3, -24, 8)]
         public void Divide2Tests(int expected, int a, int b)
         {
-
             Assert.AreNotEqual(expected, (a / b) * 2);
         }
 
         [Test]
         public void TestPassed()
-        { Assert.Pass("Test passed"); }
+        {
+            Assert.Pass("Test passed");
+        }
 
         [Test]
         public void TestFailed()
-        { Assert.Fail("Test Failed"); }  
+        {
+            Assert.Fail("Test Failed");
+        }  
     }
-
-
-    
  }
 
 

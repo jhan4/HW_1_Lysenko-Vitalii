@@ -51,6 +51,7 @@
     <Compile Include="ScientificCalculatorTests.cs" />
     <Compile Include="TearDownTest.cs" />
     <Compile Include="StringAssertTests.cs" />
+    <Compile Include="OneTimeSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Calculator\Calculator.csproj">

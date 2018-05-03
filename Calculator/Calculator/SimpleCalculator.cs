@@ -9,16 +9,24 @@ namespace Calculator
     public class SimpleCalculator
     {  
         public int Addition(int x, int y)
-        { return x + y; }
+        {
+            return x + y;
+        }
 
         public int Substraction(int x, int y)
-        { return x - y; }
+        {
+            return x - y;
+        }
 
         public double Multiplication(double x, double y)
-        { return x * y; }
+        {
+            return x * y;
+        }
 
         public double Divide(double x, double y)
-        { return x / y; }
+        {
+            return x / y;
+        }
 
        
     }

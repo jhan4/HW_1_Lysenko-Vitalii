@@ -33,7 +33,7 @@ namespace SeleniumTests
             WebDriverWait PageLoadWaiting = new WebDriverWait(driver, TimeSpan.FromSeconds(180));
             
             //Place Choosing
-            IWebElement SearchDepartureStation = driver.FindElement(By.Id("search-departure-station"));
+            IWebElement SearchDepartureStation = PageLoadWaiting.Until(Dep_St=> Dep_St.FindElement(By.Id("search-departure-station")));
             SearchDepartureStation.Clear();
             SearchDepartureStation.SendKeys("Kiev");
             SearchDepartureStation.SendKeys(Keys.Enter);
@@ -47,7 +47,7 @@ namespace SeleniumTests
             IWebElement Set_Out_Date = driver.FindElement(By.XPath("//td[not(class='is-disabled')]/button"));
             Set_Out_Date.Click();
                     
-             IWebElement DateOkButton = PageLoadWaiting.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@class,'shrinkable')]")));
+             IWebElement DateOkButton = PageLoadWaiting.Until(Date_Ok_B=> Date_Ok_B.FindElement(By.XPath("//button[contains(@class,'shrinkable')]")));
              DateOkButton.Click();
 
              //SearchButton
@@ -58,7 +58,7 @@ namespace SeleniumTests
              driver.SwitchTo().Window(driver.WindowHandles[1]);
 
              //Date Verifying
-             IWebElement SelectedDate = PageLoadWaiting.Until(ExpectedConditions.ElementExists(By.CssSelector(".js-selected.js-selectable > label > div > time")));
+             IWebElement SelectedDate = PageLoadWaiting.Until(Date_Ver=> Date_Ver.FindElement(By.CssSelector(".js-selected.js-selectable > label > div > time")));
              string DateActual = SelectedDate.Text;
              string DateExpected = "Fri 14, May";
              StringAssert.AreEqualIgnoringCase(DateExpected, DateActual, "Date should be set to Friday 14, May");
@@ -101,7 +101,7 @@ namespace SeleniumTests
              ContinueButton.Click();
 
              //First Nmae, Last Name, Luggage
-             IWebElement FirstNameField = PageLoadWaiting.Until(ExpectedConditions.ElementExists(By.Id("passenger-first-name-0")));
+             IWebElement FirstNameField = PageLoadWaiting.Until(FN_Field=> FN_Field.FindElement(By.Id("passenger-first-name-0")));
              FirstNameField.SendKeys("Vitalii");
              IWebElement LastNameField = driver.FindElement(By.Id("passenger-last-name-0"));
              LastNameField.SendKeys("Lysenko");
@@ -128,7 +128,7 @@ namespace SeleniumTests
              ContinueButton2.Click();
 
              //Sign In Form
-             IWebElement SignInForm= PageLoadWaiting.Until(ExpectedConditions.ElementIsVisible(By.Id("login-modal")));
+             IWebElement SignInForm = PageLoadWaiting.Until(Sign_F=> Sign_F.FindElement(By.Id("login-modal")));
              bool SignInFormDisplayed = SignInForm.Displayed;
              Assert.True(SignInFormDisplayed, "Signin should be displayed");
         }      

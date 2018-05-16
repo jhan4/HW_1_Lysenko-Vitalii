@@ -48,6 +48,7 @@ namespace SeleniumTests
             //Date Choosing
             IWebElement Set_Out_Date = driver.FindElement(By.Id("search-departure-date"));
             string Verified_Set_Out_Date = Set_Out_Date.Text;
+            DateTime Verified_Set_Out_Date1 = DateTime.Parse(Verified_Set_Out_Date);
 
             //Passenger Field
             IWebElement Pas_Field = driver.FindElement(By.Id("search-passenger"));
@@ -65,7 +66,8 @@ namespace SeleniumTests
             //Date Verification
             IWebElement FlyingDate = PageLoadWaiting.Until(Flying_Date => Flying_Date.FindElement(By.CssSelector("td > time")));
             string Correct_FlightDate = FlyingDate.Text;
-            Assert.That(Verified_Set_Out_Date, Does.Contain(Correct_FlightDate), "Flying Dates should be equal");
+            DateTime Correct_FlightDate1 = DateTime.Parse(Correct_FlightDate);
+            Assert.That(Verified_Set_Out_Date1, Is.EqualTo(Correct_FlightDate1), "Selected date on Search form should be equal to date on Search results page");
 
             //Verifying the Departure and Destination points  
             IWebElement SpecifiedRoute = driver.FindElement(By.XPath("//div[contains(@class,'outbound')]/div/address"));
@@ -76,20 +78,21 @@ namespace SeleniumTests
             //Verifying that  the flying date is selected
             IWebElement SelectedDate = driver.FindElement(By.CssSelector(".js-selected.js-selectable > label > div > time"));
             string DateActual = SelectedDate.Text;
-            Assert.AreEqual(Correct_FlightDate, DateActual);
+            DateTime DateActual1 = DateTime.Parse(DateActual);
+            Assert.AreEqual(DateActual1, Verified_Set_Out_Date1);
 
             //The Block of Basic Option and its price is displayed
-            IWebElement BasicOption = driver.FindElement(By.CssSelector("[class*=column--middle] div:first-of-type > label > div.rf-fare__price"));
+            IWebElement BasicOption = driver.FindElement(By.CssSelector("[class*=table__content__column--basic]"));
              bool BasicOptionDisplayed = BasicOption.Displayed;
              Assert.True(BasicOptionDisplayed);
 
             //The Block of WizzGo Option and its price is displayed
-            IWebElement WizzGoOption = driver.FindElement(By.CssSelector("[class*=column--middle] div:first-of-type > label > div.rf-fare__price"));
+            IWebElement WizzGoOption = driver.FindElement(By.CssSelector("[class*=table__content__column--middle]"));
              bool WizzGoOptionDisplayed = WizzGoOption.Displayed;
              Assert.True(WizzGoOptionDisplayed);
 
             // The Block ofWizzPlus Option and its price is displayed
-            IWebElement WizzPlusOption = driver.FindElement(By.CssSelector("[class*=column--plus] div:first-of-type > label > div.rf-fare__price"));
+            IWebElement WizzPlusOption = driver.FindElement(By.CssSelector("[class*=table__content__column--plus]"));
              bool WizzPlusOptionDisplayed = WizzPlusOption.Displayed;
              Assert.True(WizzPlusOptionDisplayed);
 
